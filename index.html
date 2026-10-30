@@ -3,855 +3,1044 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anamika // A Curated Year</title>
+  <title>Happy Birthday Anamika! 🌸✨</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #f9f8f5;
-      --bg-surface: #ffffff;
-      --text-main: #1d1c1a;
-      --text-muted: #737069;
-      --accent: #b85d43;
-      --accent-soft: #f4eae6;
-      --border: #e6e2db;
-      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    [data-theme="dark"] {
-      --bg-primary: #121211;
-      --bg-surface: #1a1918;
-      --text-main: #f0eee9;
-      --text-muted: #9c988f;
-      --accent: #d97757;
-      --accent-soft: #261d19;
-      --border: #2c2a27;
-      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --bg-cream: #fffaf3;
+      --card-bg: #ffffff;
+      --pink-soft: #ffd6e0;
+      --pink-deep: #ff7597;
+      --yellow-soft: #ffefa8;
+      --yellow-warm: #ffbe3b;
+      --purple-soft: #e8d7ff;
+      --green-soft: #d3f8e2;
+      --green-leaf: #52b788;
+      --blue-soft: #cbe3fb;
+      --text-dark: #3a3238;
+      --text-muted: #8a7e87;
+      --border-color: #f0e2d8;
+      --shadow-cute: 0 10px 25px rgba(255, 117, 151, 0.12);
+      --font-display: 'Fredoka', cursive, sans-serif;
+      --font-hand: 'Caveat', cursive;
+      --font-body: 'Nunito', sans-serif;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      line-height: 1.6;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      min-height: 100vh;
       overflow-x: hidden;
-      transition: background-color 0.4s ease, color 0.4s ease;
+      background-image: 
+        radial-gradient(var(--pink-soft) 1px, transparent 1px),
+        radial-gradient(var(--yellow-soft) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
     }
 
-    /* Ambient Canvas */
-    #ambient-canvas {
+    /* Floating Screen Balloon Layer */
+    #balloon-sky {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: 99;
+      z-index: 10;
+      overflow: hidden;
     }
 
-    /* Navigation Bar */
+    .sky-balloon {
+      position: absolute;
+      bottom: -120px;
+      width: 55px;
+      height: 70px;
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      cursor: pointer;
+      pointer-events: auto;
+      animation: floatUp 14s linear forwards;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.06));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: transform 0.15s ease;
+    }
+
+    .sky-balloon:hover {
+      transform: scale(1.1);
+    }
+
+    .sky-balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 15px;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .sky-balloon::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 8px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      transform: rotate(-25deg);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      5% { opacity: 0.95; }
+      90% { opacity: 0.95; }
+      100% { transform: translateY(-115vh) rotate(15deg); opacity: 0; }
+    }
+
+    /* Ambient Canvas for Confetti */
+    #fx-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* Cute Header / Nav */
     header {
       position: sticky;
       top: 0;
-      background: rgba(249, 248, 245, 0.85);
+      background: rgba(255, 250, 243, 0.92);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px dashed var(--pink-soft);
       z-index: 50;
-      transition: background-color 0.4s ease;
     }
 
-    [data-theme="dark"] header {
-      background: rgba(18, 18, 17, 0.85);
-    }
-
-    .nav-container {
-      max-width: 1100px;
+    .nav-wrap {
+      max-width: 1050px;
       margin: 0 auto;
+      padding: 0.8rem 1.2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
-    }
-
-    .brand-logo {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      cursor: pointer;
-    }
-
-    .nav-links {
-      display: flex;
+      flex-wrap: wrap;
       gap: 0.5rem;
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--pink-deep);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+
+    .nav-pills {
+      display: flex;
+      gap: 0.4rem;
       list-style: none;
+      flex-wrap: wrap;
     }
 
-    .nav-btn {
-      background: transparent;
-      border: none;
-      font-family: var(--font-sans);
+    .nav-pill-btn {
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      color: var(--text-dark);
+      font-family: var(--font-display);
       font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      padding: 0.4rem 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
       border-radius: 999px;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .nav-btn:hover, .nav-btn.active {
-      color: var(--text-main);
-      background-color: var(--accent-soft);
-    }
-
-    .theme-toggle {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 0.4rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    /* Page Viewports */
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem 6rem;
-      min-height: calc(100vh - 140px);
-    }
-
-    .page-section {
-      display: none;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .page-section.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section-eyebrow {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: 2.75rem;
-      font-weight: 400;
-      line-height: 1.15;
-      margin-bottom: 2rem;
-      letter-spacing: -0.01em;
-    }
-
-    /* Page 1: Atrium / Pass */
-    .ticket-wrapper {
-      display: flex;
-      justify-content: center;
-      margin: 3rem 0;
-    }
-
-    .museum-ticket {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2.5rem;
-      max-width: 520px;
-      width: 100%;
-      box-shadow: var(--card-shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ticket-header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px dashed var(--border);
-      padding-bottom: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .ticket-badge {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--accent-soft);
-      color: var(--accent);
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      font-weight: 600;
-    }
-
-    .ticket-body h3 {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      font-weight: 400;
-      margin-bottom: 0.5rem;
-    }
-
-    .ticket-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      font-size: 0.85rem;
-    }
-
-    .ticket-details span {
-      display: block;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-    }
-
-    .confetti-trigger {
-      display: block;
-      width: 100%;
-      background: var(--text-main);
-      color: var(--bg-primary);
-      border: none;
-      padding: 0.9rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-top: 1rem;
-    }
-
-    .confetti-trigger:hover {
-      background: var(--accent);
+    .nav-pill-btn:hover, .nav-pill-btn.active {
+      background: var(--pink-soft);
+      border-color: var(--pink-deep);
+      color: var(--pink-deep);
       transform: translateY(-2px);
     }
 
-    /* Page 2: Curated Curiosities */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .artifact-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: var(--card-shadow);
-      cursor: pointer;
-      transition: var(--transition);
+    /* Main Container & Page Transitions */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.2rem 5rem;
+      min-height: calc(100vh - 120px);
       position: relative;
+      z-index: 20;
     }
 
-    .artifact-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-    }
-
-    .artifact-tag {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-    }
-
-    .artifact-card h4 {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .artifact-snippet {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .artifact-full {
+    .page {
       display: none;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px dashed var(--border);
-      font-size: 0.85rem;
-      color: var(--text-main);
-      animation: fadeIn 0.3s ease forwards;
+      animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
-    .artifact-card.expanded .artifact-full {
+    .page.active {
       display: block;
     }
 
-    /* Page 3: Origami Interactive Canvas */
-    .origami-canvas-container {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: var(--card-shadow);
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.97) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    #origami-stage {
-      width: 100%;
-      height: 320px;
-      border: 1px dashed var(--border);
-      border-radius: 8px;
-      margin: 1.5rem 0;
+    .badge-cute {
+      display: inline-block;
+      background: var(--yellow-soft);
+      color: #946800;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px dashed var(--yellow-warm);
+      margin-bottom: 0.6rem;
+    }
+
+    .title-cute {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--pink-deep);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .sub-cute {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    /* PAGE 1: CELEBRATION ATRIUM */
+    .party-card {
+      background: var(--card-bg);
+      border: 3px solid var(--pink-soft);
+      border-radius: 24px;
+      padding: 2.2rem;
+      box-shadow: var(--shadow-cute);
+      text-align: center;
       position: relative;
-      cursor: crosshair;
+    }
+
+    .party-hat {
+      font-size: 3.5rem;
+      display: inline-block;
+      animation: wiggle 2.5s infinite ease-in-out;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg) scale(1.05); }
+      75% { transform: rotate(10deg) scale(1.05); }
+    }
+
+    .birthday-cake-art {
+      font-size: 5rem;
+      margin: 1rem 0;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .birthday-cake-art:hover {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .interactive-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .cute-button {
+      background: var(--pink-deep);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 117, 151, 0.35);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cute-button:hover {
+      background: #ff527c;
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .cute-button.secondary {
+      background: var(--yellow-warm);
+      color: #573a00;
+      box-shadow: 0 4px 15px rgba(255, 190, 59, 0.35);
+    }
+
+    .counter-bubble {
+      margin-top: 1.5rem;
+      font-family: var(--font-hand);
+      font-size: 1.5rem;
+      color: var(--pink-deep);
+    }
+
+    /* PAGE 2: POLAROIDS */
+    .polaroid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    .polaroid {
+      background: #ffffff;
+      padding: 1rem 1rem 1.4rem;
+      border-radius: 4px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      border: 1px solid #f0eae1;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .polaroid:nth-child(odd) {
+      transform: rotate(-3deg);
+    }
+
+    .polaroid:nth-child(even) {
+      transform: rotate(3deg);
+    }
+
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05) translateY(-6px);
+      box-shadow: 0 16px 30px rgba(255, 117, 151, 0.2);
+      z-index: 5;
+    }
+
+    .tape {
+      position: absolute;
+      top: -12px;
+      left: 35%;
+      width: 70px;
+      height: 22px;
+      background: rgba(255, 239, 168, 0.75);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transform: rotate(-4deg);
+      border-left: 2px dashed rgba(0,0,0,0.08);
+      border-right: 2px dashed rgba(0,0,0,0.08);
+    }
+
+    .polaroid-photo {
+      height: 180px;
+      background: var(--pink-soft);
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 3.5rem;
+      margin-bottom: 0.8rem;
       overflow: hidden;
+      position: relative;
     }
 
-    .origami-fold-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 0.6rem 1.25rem;
-      border-radius: 999px;
+    .polaroid-caption {
+      font-family: var(--font-hand);
+      font-size: 1.4rem;
+      color: #4a3e47;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .polaroid-hidden-note {
+      display: none;
       font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed var(--pink-soft);
+      text-align: center;
+    }
+
+    .polaroid.revealed .polaroid-hidden-note {
+      display: block;
+    }
+
+    /* PAGE 3: BLOOM GARDEN */
+    .garden-wrap {
+      background: var(--card-bg);
+      border: 3px dashed var(--green-leaf);
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-cute);
+      text-align: center;
+    }
+
+    #garden-canvas-box {
+      width: 100%;
+      height: 340px;
+      background: linear-gradient(180deg, #f0f9ff 0%, #d8f3dc 100%);
+      border-radius: 16px;
+      position: relative;
       cursor: pointer;
-      transition: var(--transition);
-      margin: 0 0.25rem;
+      overflow: hidden;
+      margin: 1rem 0;
+      border: 2px solid #b7e4c7;
     }
 
-    .origami-fold-btn:hover {
-      opacity: 0.9;
+    .flower-sprout {
+      position: absolute;
+      bottom: 0;
+      pointer-events: none;
+      animation: flowerGrow 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      transform-origin: bottom center;
     }
 
-    /* Page 4: Audio Lounge */
-    .track-list {
+    @keyframes flowerGrow {
+      0% { transform: scale(0) translateY(40px); }
+      70% { transform: scale(1.15) translateY(-5px); }
+      100% { transform: scale(1) translateY(0); }
+    }
+
+    /* PAGE 4: CASSETTE JUKEBOX */
+    .jukebox-box {
+      background: var(--card-bg);
+      border: 3px solid var(--purple-soft);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: var(--shadow-cute);
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cassette {
+      background: #2b252a;
+      border-radius: 16px;
+      padding: 1.2rem;
+      margin: 1.5rem auto;
+      border: 4px solid #574b55;
+      position: relative;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+
+    .cassette-label {
+      background: var(--yellow-soft);
+      border-radius: 8px;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-    }
-
-    .track-item {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      padding: 1.25rem;
-      border-radius: 10px;
-      display: flex;
       align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cassette-reels {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .reel {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 6px dashed #2b252a;
+      transition: transform 0.2s linear;
+    }
+
+    .playing .reel {
+      animation: spinReel 2s linear infinite;
+    }
+
+    @keyframes spinReel {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .playlist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+
+    .track-row {
+      background: var(--bg-cream);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      display: flex;
       justify-content: space-between;
-      transition: var(--transition);
-    }
-
-    .track-item:hover {
-      border-color: var(--accent);
-    }
-
-    .track-meta h5 {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-    }
-
-    .track-meta p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .play-pill {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: none;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      align-items: center;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    /* Page 5: The Unfolding Letter */
-    .envelope-container {
+    .track-row:hover, .track-row.active-track {
+      border-color: var(--pink-deep);
+      background: #fff;
+      transform: translateX(4px);
+    }
+
+    /* PAGE 5: THE RIBBON ENVELOPE LETTER */
+    .letter-stage {
       display: flex;
       justify-content: center;
-      margin: 2rem 0;
+      margin-top: 1rem;
     }
 
-    .interactive-envelope {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+    .envelope-card {
+      background: #ffffff;
+      border: 3px solid var(--pink-soft);
+      border-radius: 20px;
       max-width: 620px;
       width: 100%;
-      padding: 2.5rem;
-      box-shadow: var(--card-shadow);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-cute);
       position: relative;
+      text-align: center;
     }
 
-    .seal-button {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      width: 48px;
-      height: 48px;
+    .wax-heart-seal {
+      width: 60px;
+      height: 60px;
+      background: var(--pink-deep);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.5rem;
+      color: #fff;
+      font-size: 1.8rem;
+      margin: 0 auto 1rem;
       cursor: pointer;
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      box-shadow: 0 4px 12px rgba(184, 93, 67, 0.3);
-      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 117, 151, 0.4);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .seal-button:hover {
-      transform: scale(1.08);
+    .wax-heart-seal:hover {
+      transform: scale(1.15) rotate(8deg);
     }
 
-    .letter-contents {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      line-height: 1.8;
+    .actual-letter {
       display: none;
-      animation: fadeIn 0.8s ease forwards;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #3f353d;
+      padding: 1rem 0.5rem;
+      animation: openLetter 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
-    .letter-contents.revealed {
-      display: block;
-    }
-
-    .letter-salutation {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
-
-    /* Page 6: The Oracle Deck */
-    .deck-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .oracle-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      height: 280px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      position: relative;
-      perspective: 1000px;
-      transition: var(--transition);
-    }
-
-    .oracle-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--card-shadow);
-      border-color: var(--accent);
-    }
-
-    .oracle-card-back, .oracle-card-front {
-      backface-visibility: hidden;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .oracle-card-front {
-      position: absolute;
-      transform: rotateY(180deg);
-    }
-
-    .oracle-card.flipped .oracle-card-back {
-      transform: rotateY(180deg);
-    }
-
-    .oracle-card.flipped .oracle-card-front {
-      transform: rotateY(0deg);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+    @keyframes openLetter {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 640px) {
-      .nav-links {
-        display: none; /* Mobile Drawer or Tab scrolling */
-      }
-      .mobile-menu {
-        display: flex;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-      }
-      .section-title {
-        font-size: 2.1rem;
-      }
+    .handwritten-sign {
+      font-family: var(--font-hand);
+      font-size: 2rem;
+      color: var(--pink-deep);
+      text-align: right;
+      margin-top: 1.2rem;
+    }
+
+    /* PAGE 6: WISHING BALLOONS */
+    .balloon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .wish-balloon-card {
+      background: var(--card-bg);
+      border: 2px dashed var(--pink-soft);
+      border-radius: 18px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-cute);
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .wish-balloon-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pink-deep);
+    }
+
+    .wish-balloon-card.popped {
+      background: var(--yellow-soft);
+      border-style: solid;
+      border-color: var(--yellow-warm);
+    }
+
+    .balloon-icon {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .wish-balloon-card:hover .balloon-icon {
+      transform: scale(1.15);
+    }
+
+    .wish-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    @media (max-width: 600px) {
+      .title-cute { font-size: 2rem; }
+      .nav-wrap { justify-content: center; }
+      .party-card { padding: 1.5rem 1rem; }
     }
   </style>
 </head>
-<body data-theme="light">
+<body>
 
-  <canvas id="ambient-canvas"></canvas>
+  <!-- Floating Ambient Balloons in Background -->
+  <div id="balloon-sky"></div>
+  
+  <!-- FX Canvas for Confetti & Sparkles -->
+  <canvas id="fx-canvas"></canvas>
 
   <header>
-    <div class="nav-container">
-      <div class="brand-logo" onclick="navigateTo('atrium')">A · S // 2026</div>
-      <ul class="nav-links">
-        <li><button class="nav-btn active" onclick="navigateTo('atrium')">01. Atrium</button></li>
-        <li><button class="nav-btn" onclick="navigateTo('gallery')">02. Curiosities</button></li>
-        <li><button class="nav-btn" onclick="navigateTo('origami')">03. Pavilion</button></li>
-        <li><button class="nav-btn" onclick="navigateTo('audio')">04. Frequency</button></li>
-        <li><button class="nav-btn" onclick="navigateTo('letter')">05. The Letter</button></li>
-        <li><button class="nav-btn" onclick="navigateTo('oracle')">06. The Oracle</button></li>
+    <div class="nav-wrap">
+      <div class="brand" onclick="goToPage('atrium')">
+        <span>🎈</span> Anamika’s Day
+      </div>
+      <ul class="nav-pills">
+        <li><button class="nav-pill-btn active" onclick="goToPage('atrium')">🎉 Party</button></li>
+        <li><button class="nav-pill-btn" onclick="goToPage('polaroids')">📸 Memories</button></li>
+        <li><button class="nav-pill-btn" onclick="goToPage('garden')">🌸 Bloom</button></li>
+        <li><button class="nav-pill-btn" onclick="goToPage('tunes')">🎵 Jukebox</button></li>
+        <li><button class="nav-pill-btn" onclick="goToPage('letter')">💌 Letter</button></li>
+        <li><button class="nav-pill-btn" onclick="goToPage('wishes')">✨ Wishes</button></li>
       </ul>
-      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">Linen / Dark</button>
     </div>
   </header>
 
   <main>
-    <!-- PAGE 1: ATRIUM -->
-    <section id="atrium" class="page-section active">
-      <p class="section-eyebrow">Exhibition Catalogue // Issue 21</p>
-      <h1 class="section-title">Happy Birthday, Anamika.</h1>
-      <p style="color: var(--text-muted); max-width: 580px;">A minimal space engineered to commemorate the craftsmanship, quiet milestones, and creative vectors of the year past.</p>
-      
-      <div class="ticket-wrapper">
-        <div class="museum-ticket">
-          <div class="ticket-header">
+    <!-- PAGE 1: PARTY ATRIUM -->
+    <section id="atrium" class="page active">
+      <div class="party-card">
+        <span class="badge-cute">Special Birthday Edition ✨</span>
+        <h1 class="title-cute">Happy Birthday, Anamika! 🎂</h1>
+        <p class="sub-cute">Wishing you a year filled with brilliant design ideas, peace of mind, and zero unnecessary meetings!</p>
+
+        <div class="party-hat">🥳</div>
+        <br>
+        <div class="birthday-cake-art" onclick="blowCandles()" title="Click to blow out candles!">
+          🎂
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">(Tap the cake to blow out candles & make a wish!)</p>
+
+        <div class="interactive-btn-group">
+          <button class="cute-button" onclick="dropBalloons()">
+            <span>🎈</span> Release 5 Balloons
+          </button>
+          <button class="cute-button secondary" onclick="blastPartyConfetti()">
+            <span>🎉</span> Confetti Blast!
+          </button>
+        </div>
+
+        <div class="counter-bubble" id="balloonScore">Balloons Popped: 0 🎈</div>
+      </div>
+    </section>
+
+    <!-- PAGE 2: POLAROID SCRAPBOOK -->
+    <section id="polaroids" class="page">
+      <span class="badge-cute">Snapshots & Laughs 📸</span>
+      <h2 class="title-cute">The Memory Scrapbook</h2>
+      <p class="sub-cute">Click on any photo to reveal the secret note hidden underneath!</p>
+
+      <div class="polaroid-grid">
+        <div class="polaroid" onclick="revealPolaroid(this)">
+          <div class="tape"></div>
+          <div class="polaroid-photo" style="background: #ffd6e0;">🏛️</div>
+          <p class="polaroid-caption">National Hastakala Walk</p>
+          <p class="polaroid-hidden-note">Analyzing woodblock prints and ancient pottery while wondering how they maintained such crazy design standards without Figma.</p>
+        </div>
+
+        <div class="polaroid" onclick="revealPolaroid(this)">
+          <div class="tape"></div>
+          <div class="polaroid-photo" style="background: #ffefa8;">🎨</div>
+          <p class="polaroid-caption">The Palette Sprint</p>
+          <p class="polaroid-hidden-note">"Just 5 more minutes" turning into complete brand kit overhauls with high-agency aesthetic alignment.</p>
+        </div>
+
+        <div class="polaroid" onclick="revealPolaroid(this)">
+          <div class="tape"></div>
+          <div class="polaroid-photo" style="background: #d3f8e2;">☕</div>
+          <p class="polaroid-caption">Museum Chai Break</p>
+          <p class="polaroid-hidden-note">Fueling up on snacks, debating color harmonies, and laughing at the absurdity of day-to-day chaos.</p>
+        </div>
+
+        <div class="polaroid" onclick="revealPolaroid(this)">
+          <div class="tape"></div>
+          <div class="polaroid-photo" style="background: #e8d7ff;">🌹</div>
+          <p class="polaroid-caption">Origami Masterclasses</p>
+          <p class="polaroid-hidden-note">Precision creases, folded paper flowers, and endless patience when getting the angles right.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: BLOOM GARDEN -->
+    <section id="garden" class="page">
+      <span class="badge-cute">Interactive Canvas 🌱</span>
+      <h2 class="title-cute">Anamika’s Secret Garden</h2>
+      <p class="sub-cute">Click anywhere on the grass below to plant and bloom colorful flowers!</p>
+
+      <div class="garden-wrap">
+        <div id="garden-canvas-box" onclick="plantFlower(event)">
+          <span style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%); font-size: 0.85rem; font-weight: 700; color: #2d6a4f; background: rgba(255,255,255,0.7); padding: 4px 12px; border-radius: 20px;">
+            Tap anywhere to plant flowers 🌸
+          </span>
+        </div>
+        <div class="interactive-btn-group">
+          <button class="cute-button" onclick="bloomFullBouquet()">
+            <span>💐</span> Instant Full Bouquet
+          </button>
+          <button class="cute-button secondary" onclick="clearGarden()">
+            <span>✨</span> Fresh Soil
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: CASSETTE JUKEBOX -->
+    <section id="tunes" class="page">
+      <div class="jukebox-box">
+        <span class="badge-cute">Audio Vibes 📻</span>
+        <h2 class="title-cute">The Lo-Fi Tape Deck</h2>
+        <p class="sub-cute">Relaxing chimes and synthesizer melodies built with code.</p>
+
+        <div class="cassette" id="cassetteBody">
+          <div class="cassette-label">
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: #3a3238;">ANAMIKA'S BIRTHDAY MIXTAPE</h4>
+            <p style="font-size: 0.75rem; color: #8a7e87;" id="currentTrackTitle">Track 01: Morning Matcha Sunshine</p>
+            <div class="cassette-reels">
+              <div class="reel"></div>
+              <div class="reel"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="playlist-items">
+          <div class="track-row active-track" onclick="playSynthesizedTrack(0, this)">
             <div>
-              <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Access Level</p>
-              <h4 style="font-family: var(--font-serif); font-size: 1.25rem;">Permanent Guest of Honour</h4>
+              <strong>01. Morning Matcha Sunshine</strong>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Sweet uplifting major keys</p>
             </div>
-            <div class="ticket-badge">Valid Indefinitely</div>
+            <span>▶</span>
           </div>
-          <div class="ticket-body">
-            <h3>Special Exhibition</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">National Museum of Craft, High Agency, and Shared Chaos.</p>
-            <div class="ticket-details">
-              <div><span>ADMIT</span> Anamika</div>
-              <div><span>CURATOR</span> Kautik Shende</div>
-              <div><span>LOCATION</span> Noida ↔ The World</div>
-              <div><span>DATE</span> Official Milestone</div>
+
+          <div class="track-row" onclick="playSynthesizedTrack(1, this)">
+            <div>
+              <strong>02. Hastakala Raindrops</strong>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Gentle pentatonic chime progression</p>
             </div>
-            <button class="confetti-trigger" onclick="fireCelebration()">Release Celebration Paper</button>
+            <span>▶</span>
+          </div>
+
+          <div class="track-row" onclick="playSynthesizedTrack(2, this)">
+            <div>
+              <strong>03. Starlight Design Flow</strong>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Soothing dreamy night loop</p>
+            </div>
+            <span>▶</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PAGE 2: CURIOSITIES -->
-    <section id="gallery" class="page-section">
-      <p class="section-eyebrow">Selected Curations</p>
-      <h2 class="section-title">The Gallery of Curiosities</h2>
-      <div class="gallery-grid">
-        <div class="artifact-card" onclick="toggleArtifact(this)">
-          <div class="artifact-tag">Exhibition Object 01</div>
-          <h4>The Hastakala Expedition</h4>
-          <p class="artifact-snippet">Woodblock textiles, woven clay, and lingering near ancient exhibits.</p>
-          <div class="artifact-full">
-            Evidence that true appreciation for detail lies in slowing down while everyone else is rushing through the hallways. An unmatched afternoon of aesthetic inspection.
-          </div>
-        </div>
-        <div class="artifact-card" onclick="toggleArtifact(this)">
-          <div class="artifact-tag">Exhibition Object 02</div>
-          <h4>The Asynchronous Design Sprint</h4>
-          <p class="artifact-snippet">Figma canvases, palette stress-tests, and high-trust alignment.</p>
-          <div class="artifact-full">
-            Operating as creative peers without needing ten scheduled calls to know what looks exceptional and what looks pedestrian. 3-5 hours of pure focus.
-          </div>
-        </div>
-        <div class="artifact-card" onclick="toggleArtifact(this)">
-          <div class="artifact-tag">Exhibition Object 03</div>
-          <h4>The Rescuer's Disarmament</h4>
-          <p class="artifact-snippet">Reclaiming boundaries, holding personal space, and peace of mind.</p>
-          <div class="artifact-full">
-            A continuous reminder that your empathy is a rare currency; you do not owe everyone a seat in your front row. Protect your bandwidth fiercely this year.
-          </div>
-        </div>
-        <div class="artifact-card" onclick="toggleArtifact(this)">
-          <div class="artifact-tag">Exhibition Object 04</div>
-          <h4>The Kawasaki Rose</h4>
-          <p class="artifact-snippet">Creased paper folds, finger dexterity, and patience rewarded.</p>
-          <div class="artifact-full">
-            A testament to taking raw material, applying geometric rules and focus, and producing something delicate and long-lasting.
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- PAGE 5: THE ENVELOPE & LETTER -->
+    <section id="letter" class="page">
+      <span class="badge-cute">From Kautik 💌</span>
+      <h2 class="title-cute">A Letter For You</h2>
+      <p class="sub-cute">Click the wax heart seal to open your birthday letter.</p>
 
-    <!-- PAGE 3: ORIGAMI PAVILION -->
-    <section id="origami" class="page-section">
-      <p class="section-eyebrow">Kinetic Sandbox</p>
-      <h2 class="section-title">The Paper & Crease Pavilion</h2>
-      <div class="origami-canvas-container">
-        <p style="font-size: 0.9rem; color: var(--text-muted); max-width: 500px; margin: 0 auto;">Interact with the tactile canvas below. Click anywhere inside the bounding perimeter to score a crease node.</p>
-        <div id="origami-stage" onclick="spawnCrease(event)">
-          <span style="color: var(--text-muted); font-size: 0.8rem; pointer-events: none;" id="stagePrompt">Click to crease paper coordinates</span>
-        </div>
-        <div>
-          <button class="origami-fold-btn" onclick="resetOrigami()">Clear Plate</button>
-          <button class="origami-fold-btn" onclick="generateSymmetry()">Fold Geometric Rose</button>
-        </div>
-      </div>
-    </section>
+      <div class="letter-stage">
+        <div class="envelope-card">
+          <div class="wax-heart-seal" id="heartSeal" onclick="openHeartLetter()">
+            💖
+          </div>
+          <p id="envelopePrompt" style="font-family: var(--font-display); font-weight: 600; color: var(--pink-deep);">
+            Tap the heart to break the seal!
+          </p>
 
-    <!-- PAGE 4: AUDIO / FREQUENCY -->
-    <section id="audio" class="page-section">
-      <p class="section-eyebrow">Acoustic Residency</p>
-      <h2 class="section-title">Curated Frequencies</h2>
-      <div class="track-list">
-        <div class="track-item">
-          <div class="track-meta">
-            <h5>01. Late Night Motion & Typography</h5>
-            <p>Lo-fi ambient textures // Focus state</p>
-          </div>
-          <button class="play-pill" onclick="simulatePlay(this)">Play Track</button>
-        </div>
-        <div class="track-item">
-          <div class="track-meta">
-            <h5>02. National Hastakala Walk (Field Recording)</h5>
-            <p>Rain on courtyard tiles, footsteps on terracotta</p>
-          </div>
-          <button class="play-pill" onclick="simulatePlay(this)">Play Track</button>
-        </div>
-        <div class="track-item">
-          <div class="track-meta">
-            <h5>03. Polymath Momentum</h5>
-            <p>Piano dynamics, steady metronome, zero friction</p>
-          </div>
-          <button class="play-pill" onclick="simulatePlay(this)">Play Track</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- PAGE 5: THE LETTER -->
-    <section id="letter" class="page-section">
-      <p class="section-eyebrow">Archival Dispatch</p>
-      <h2 class="section-title">The Unfolding Letter</h2>
-      <div class="envelope-container">
-        <div class="interactive-envelope">
-          <button class="seal-button" onclick="breakSeal(this)" title="Break Wax Seal">A</button>
-          <p id="sealInstruction" style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">Press the seal to break the fold.</p>
-          
-          <div class="letter-contents" id="letterBody">
-            <p class="letter-salutation">Dear Anamika,</p>
-            <p>Happy birthday. In a world overrun by rushed work, automated noise, and loud distractions, your deliberate taste, eye for craftsmanship, and quiet dedication to making things look and feel right are rare qualities.</p>
+          <div class="actual-letter" id="letterText">
+            <p style="font-family: var(--font-display); font-size: 1.3rem; color: var(--pink-deep); margin-bottom: 0.5rem;">Dear Anamika,</p>
+            <p>Happy Birthday! 🌸</p>
             <br>
-            <p>Whether we're dissecting museum artifacts, pacing out design systems, or navigating complex life priorities, you have been an exceptional creative partner and a steady anchor.</p>
+            <p>In a world where everyone is in a rush to copy-paste the same generic templates, your dedication to aesthetics, craftsmanship, and real taste stands out. Whether we are walking through museum corridors inspecting ancient textiles or aligning on high-velocity creative sprints, collaborating with you is always inspiring.</p>
             <br>
-            <p>May this year bring you unbroken creative agency, projects that respect your talents, and the quiet confidence to guard your peace without hesitation.</p>
+            <p>I hope this year brings you creative freedom, exciting design challenges that showcase your brilliance, and above all, unbroken peace of mind with healthy boundaries to protect your energy.</p>
             <br>
-            <p style="text-align: right; font-style: italic;">— Kautik</p>
+            <p>Keep making beautiful things and never settle for ordinary.</p>
+            <p class="handwritten-sign">— Kautik 🎈</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PAGE 6: THE ORACLE DECK -->
-    <section id="oracle" class="page-section">
-      <p class="section-eyebrow">Next Chapter</p>
-      <h2 class="section-title">The Year Ahead: Oracle Deck</h2>
-      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Pick any card to flip its forecast for this operational year.</p>
-      
-      <div class="deck-grid">
-        <div class="oracle-card" onclick="flipCard(this)">
-          <div class="oracle-card-back">
-            <div style="font-family: var(--font-serif); font-size: 2rem;">I</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">The Artifact</p>
-          </div>
-          <div class="oracle-card-front">
-            <h4 style="font-family: var(--font-serif); font-size: 1.3rem;">Masterwork</h4>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">A design milestone that sets a permanent personal standard.</p>
-          </div>
+    <!-- PAGE 6: WISHING BALLOONS -->
+    <section id="wishes" class="page">
+      <span class="badge-cute">Pop to Reveal 🔮</span>
+      <h2 class="title-cute">The Wishing Balloons</h2>
+      <p class="sub-cute">Click each balloon to pop it and reveal your fortune for this year!</p>
+
+      <div class="balloon-grid">
+        <div class="wish-balloon-card" onclick="popWishBalloon(this, 'Unstoppable Creative Flow 🎨')">
+          <span class="balloon-icon">🎈</span>
+          <p class="wish-text">Tap to Pop</p>
         </div>
 
-        <div class="oracle-card" onclick="flipCard(this)">
-          <div class="oracle-card-back">
-            <div style="font-family: var(--font-serif); font-size: 2rem;">II</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">The Boundary</p>
-          </div>
-          <div class="oracle-card-front">
-            <h4 style="font-family: var(--font-serif); font-size: 1.3rem;">Sanctuary</h4>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Reclaiming 100% of your energy for your own vision.</p>
-          </div>
+        <div class="wish-balloon-card" onclick="popWishBalloon(this, 'Peaceful Boundaries & No Drama 🛡️')">
+          <span class="balloon-icon">🎈</span>
+          <p class="wish-text">Tap to Pop</p>
         </div>
 
-        <div class="oracle-card" onclick="flipCard(this)">
-          <div class="oracle-card-back">
-            <div style="font-family: var(--font-serif); font-size: 2rem;">III</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">The Flight</p>
-          </div>
-          <div class="oracle-card-front">
-            <h4 style="font-family: var(--font-serif); font-size: 1.3rem;">Exploration</h4>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">New spaces, tactile museums, and unfiltered creative freedom.</p>
-          </div>
+        <div class="wish-balloon-card" onclick="popWishBalloon(this, 'Museum Adventures & Hidden Cafes ☕')">
+          <span class="balloon-icon">🎈</span>
+          <p class="wish-text">Tap to Pop</p>
+        </div>
+
+        <div class="wish-balloon-card" onclick="popWishBalloon(this, 'Masterwork Portfolio Project 🌟')">
+          <span class="balloon-icon">🎈</span>
+          <p class="wish-text">Tap to Pop</p>
         </div>
       </div>
     </section>
   </main>
 
   <script>
-    // Navigation Routing
-    function navigateTo(pageId) {
-      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-      
-      const targetSec = document.getElementById(pageId);
-      if (targetSec) targetSec.classList.add('active');
+    // Navigation
+    function goToPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-pill-btn').forEach(b => b.classList.remove('active'));
 
-      const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.getAttribute('onclick').includes(pageId));
-      if (activeBtn) activeBtn.classList.add('active');
+      const target = document.getElementById(pageId);
+      if (target) target.classList.add('active');
+
+      const btn = Array.from(document.querySelectorAll('.nav-pill-btn')).find(b => b.getAttribute('onclick').includes(pageId));
+      if (btn) btn.classList.add('active');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Theme Toggle
-    function toggleTheme() {
-      const body = document.body;
-      const themeBtn = document.getElementById('themeBtn');
-      if (body.getAttribute('data-theme') === 'light') {
-        body.setAttribute('data-theme', 'dark');
-        themeBtn.innerText = 'Dark / Linen';
-      } else {
-        body.setAttribute('data-theme', 'light');
-        themeBtn.innerText = 'Linen / Dark';
-      }
+    // Audio Synthesis for cute interactive sounds (Zero external MP3 dependencies)
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
     }
 
-    // Artifact Expand
-    function toggleArtifact(card) {
-      card.classList.toggle('expanded');
-    }
-
-    // Interactive Origami Crease Mechanics
-    const stage = document.getElementById('origami-stage');
-    let points = [];
-
-    function spawnCrease(e) {
-      const rect = stage.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      document.getElementById('stagePrompt').style.display = 'none';
-
-      const dot = document.createElement('div');
-      dot.style.position = 'absolute';
-      dot.style.left = `${x - 4}px`;
-      dot.style.top = `${y - 4}px`;
-      dot.style.width = '8px';
-      dot.style.height = '8px';
-      dot.style.background = 'var(--accent)';
-      dot.style.borderRadius = '50%';
-      dot.style.pointerEvents = 'none';
-      stage.appendChild(dot);
-      points.push({x, y});
-
-      if (points.length > 1) {
-        const p1 = points[points.length - 2];
-        const p2 = points[points.length - 1];
-        drawLine(p1.x, p1.y, p2.x, p2.y);
-      }
-    }
-
-    function drawLine(x1, y1, x2, y2) {
-      const length = Math.hypot(x2 - x1, y2 - y1);
-      const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-      const line = document.createElement('div');
-      line.style.position = 'absolute';
-      line.style.left = `${x1}px`;
-      line.style.top = `${y1}px`;
-      line.style.width = `${length}px`;
-      line.style.height = '1px';
-      line.style.background = 'var(--border)';
-      line.style.transformOrigin = '0 0';
-      line.style.transform = `rotate(${angle}deg)`;
-      line.style.pointerEvents = 'none';
-      stage.appendChild(line);
-    }
-
-    function resetOrigami() {
-      stage.innerHTML = '<span style="color: var(--text-muted); font-size: 0.8rem; pointer-events: none;" id="stagePrompt">Click to crease paper coordinates</span>';
-      points = [];
-    }
-
-    function generateSymmetry() {
-      resetOrigami();
-      document.getElementById('stagePrompt').style.display = 'none';
-      const cx = stage.clientWidth / 2;
-      const cy = stage.clientHeight / 2;
-      const petals = 8;
-      const r = 80;
-
-      for (let i = 0; i < petals; i++) {
-        const angle = (i * 2 * Math.PI) / petals;
-        const px = cx + r * Math.cos(angle);
-        const py = cy + r * Math.sin(angle);
-        drawLine(cx, cy, px, py);
-      }
-    }
-
-    // Audio Play Simulation (Web Audio Synthetic Ping)
-    function simulatePlay(btn) {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    function playCutePopSound() {
+      const ctx = getAudioContext();
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(440, ctx.currentTime);
-      gain.gain.setValueAtTime(0.08, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
-
+      osc.frequency.setValueAtTime(450, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start();
-      osc.stop(ctx.currentTime + 1.2);
-
-      btn.innerText = 'Playing...';
-      setTimeout(() => { btn.innerText = 'Replay'; }, 1200);
+      osc.stop(ctx.currentTime + 0.08);
     }
 
-    // Break Wax Seal on Letter
-    function breakSeal(btn) {
-      btn.style.transform = 'scale(0.8) rotate(45deg)';
-      btn.style.opacity = '0';
-      document.getElementById('sealInstruction').style.display = 'none';
+    function playChimeSound(freq = 523.25) {
+      const ctx = getAudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.5);
+    }
+
+    // Floating Screen Balloons
+    let popCount = 0;
+    const balloonColors = ['#ffd6e0', '#ffefa8', '#d3f8e2', '#e8d7ff', '#cbe3fb', '#ffbe3b'];
+
+    function spawnSingleBalloon() {
+      const sky = document.getElementById('balloon-sky');
+      const b = document.createElement('div');
+      b.className = 'sky-balloon';
+      const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+      b.style.backgroundColor = color;
+      b.style.left = `${Math.random() * 90 + 5}vw`;
+      b.style.animationDuration = `${Math.random() * 6 + 10}s`;
+
+      b.onclick = (e) => {
+        playCutePopSound();
+        spawnConfettiAt(e.clientX, e.clientY);
+        b.remove();
+        popCount++;
+        document.getElementById('balloonScore').innerText = `Balloons Popped: ${popCount} 🎈`;
+      };
+
+      sky.appendChild(b);
+      setTimeout(() => { if (b.parentNode) b.remove(); }, 16000);
+    }
+
+    function dropBalloons() {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(spawnSingleBalloon, i * 350);
+      }
+    }
+    // Continuous gentle balloon drift
+    setInterval(spawnSingleBalloon, 3500);
+
+    // Cake Interaction
+    function blowCandles() {
+      playCutePopSound();
+      blastPartyConfetti();
+      alert("✨ You blew out the candles! May all your design dreams & wishes come true this year! 🌸🎂");
+    }
+
+    // Polaroid Reveal
+    function revealPolaroid(card) {
+      card.classList.toggle('revealed');
+      playChimeSound(659.25);
+    }
+
+    // Interactive Flower Planting Garden
+    const flowerEmojis = ['🌸', '🌼', '🌷', '🌺', '🌻', '🪻'];
+
+    function plantFlower(e) {
+      const box = document.getElementById('garden-canvas-box');
+      const rect = box.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      playChimeSound(587.33);
+
+      const flower = document.createElement('div');
+      flower.className = 'flower-sprout';
+      flower.style.left = `${x - 20}px`;
+      flower.style.top = `${y - 25}px`;
+      flower.style.fontSize = `${Math.random() * 15 + 28}px`;
+      flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+
+      box.appendChild(flower);
+    }
+
+    function bloomFullBouquet() {
+      const box = document.getElementById('garden-canvas-box');
+      for (let i = 0; i < 18; i++) {
+        setTimeout(() => {
+          const flower = document.createElement('div');
+          flower.className = 'flower-sprout';
+          flower.style.left = `${Math.random() * (box.clientWidth - 40)}px`;
+          flower.style.top = `${Math.random() * (box.clientHeight - 80) + 40}px`;
+          flower.style.fontSize = `${Math.random() * 16 + 30}px`;
+          flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+          box.appendChild(flower);
+          playChimeSound(523 + i * 20);
+        }, i * 70);
+      }
+    }
+
+    function clearGarden() {
+      document.getElementById('garden-canvas-box').innerHTML = `
+        <span style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%); font-size: 0.85rem; font-weight: 700; color: #2d6a4f; background: rgba(255,255,255,0.7); padding: 4px 12px; border-radius: 20px;">
+          Tap anywhere to plant flowers 🌸
+        </span>
+      `;
+    }
+
+    // Synthesized Mixtape Logic
+    const tracks = [
+      { name: "01. Morning Matcha Sunshine", chords: [523.25, 659.25, 783.99, 1046.50] },
+      { name: "02. Hastakala Raindrops", chords: [440, 523.25, 659.25, 587.33] },
+      { name: "03. Starlight Design Flow", chords: [392, 493.88, 587.33, 783.99] }
+    ];
+
+    let currentInterval = null;
+
+    function playSynthesizedTrack(index, row) {
+      document.querySelectorAll('.track-row').forEach(r => r.classList.remove('active-track'));
+      row.classList.add('active-track');
+      document.getElementById('cassetteBody').classList.add('playing');
+      document.getElementById('currentTrackTitle').innerText = tracks[index].name;
+
+      if (currentInterval) clearInterval(currentInterval);
+
+      let step = 0;
+      const melody = tracks[index].chords;
+
+      currentInterval = setInterval(() => {
+        playChimeSound(melody[step % melody.length]);
+        step++;
+      }, 550);
+
       setTimeout(() => {
-        btn.style.display = 'none';
-        document.getElementById('letterBody').classList.add('revealed');
-      }, 300);
+        clearInterval(currentInterval);
+        document.getElementById('cassetteBody').classList.remove('playing');
+      }, 10000);
     }
 
-    // Card Flip
-    function flipCard(card) {
-      card.classList.toggle('flipped');
+    // Letter Reveal
+    function openHeartLetter() {
+      playCutePopSound();
+      blastPartyConfetti();
+      document.getElementById('heartSeal').style.display = 'none';
+      document.getElementById('envelopePrompt').style.display = 'none';
+      document.getElementById('letterText').style.display = 'block';
     }
 
-    // Particle Confetti
-    const canvas = document.getElementById('ambient-canvas');
+    // Wish Balloons Pop
+    function popWishBalloon(card, wish) {
+      if (card.classList.contains('popped')) return;
+      playCutePopSound();
+      card.classList.add('popped');
+      card.querySelector('.balloon-icon').innerText = '✨';
+      card.querySelector('.wish-text').innerText = wish;
+      spawnConfettiAt(window.innerWidth / 2, window.innerHeight / 2);
+    }
+
+    // Confetti System
+    const canvas = document.getElementById('fx-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
 
@@ -862,29 +1051,34 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    function fireCelebration() {
-      for (let i = 0; i < 70; i++) {
+    function blastPartyConfetti() {
+      spawnConfettiAt(window.innerWidth / 2, window.innerHeight * 0.4, 80);
+    }
+
+    function spawnConfettiAt(x, y, count = 25) {
+      const pastelColors = ['#ff7597', '#ffbe3b', '#52b788', '#cbe3fb', '#e8d7ff'];
+      for (let i = 0; i < count; i++) {
         particles.push({
-          x: window.innerWidth / 2,
-          y: window.innerHeight / 2,
-          vx: (Math.random() - 0.5) * 12,
-          vy: (Math.random() - 0.5) * 12 - 4,
-          size: Math.random() * 6 + 4,
-          color: Math.random() > 0.5 ? '#b85d43' : '#e6e2db',
+          x: x,
+          y: y,
+          vx: (Math.random() - 0.5) * 10,
+          vy: (Math.random() - 0.5) * 10 - 3,
+          size: Math.random() * 8 + 4,
+          color: pastelColors[Math.floor(Math.random() * pastelColors.length)],
           alpha: 1,
           rot: Math.random() * 360,
-          dRot: Math.random() * 8 - 4
+          dRot: Math.random() * 10 - 5
         });
       }
     }
 
-    function renderParticles() {
+    function renderConfetti() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p, index) => {
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.2; // Gravity
-        p.alpha -= 0.012;
+        p.vy += 0.22; // gravity
+        p.alpha -= 0.015;
         p.rot += p.dRot;
 
         ctx.save();
@@ -892,14 +1086,16 @@
         ctx.rotate(p.rot * Math.PI / 180);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = Math.max(p.alpha, 0);
-        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+        ctx.fill();
         ctx.restore();
 
         if (p.alpha <= 0) particles.splice(index, 1);
       });
-      requestAnimationFrame(renderParticles);
+      requestAnimationFrame(renderConfetti);
     }
-    renderParticles();
+    renderConfetti();
   </script>
 </body>
 </html>
